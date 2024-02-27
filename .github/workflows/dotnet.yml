@@ -31,7 +31,7 @@ jobs:
 
     - name: Restore dependencies (Project.Test)
       run: dotnet restore
-      working-directory: Project.Tests
+      working-directory: Project.Test
     - name: Test (Project.Test)
       run: dotnet test
       working-directory: Project.Test
