@@ -29,9 +29,9 @@ jobs:
       run: dotnet build --no-restore
       working-directory: Project
 
-    - name: Restore dependencies (Project.Tests)
+    - name: Restore dependencies (Project.Test)
       run: dotnet restore
       working-directory: Project.Tests
-    - name: Test (Project.Tests)
+    - name: Test (Project.Test)
       run: dotnet test
-      working-directory: Project.Tests
+      working-directory: Project.Test
