@@ -5,17 +5,23 @@ namespace RecipeMS
     public class Recipe
     {
         public Guid RecipeID = Guid.NewGuid();
-        public string? Title {get; set;}
-        public List<string>? Ingredients {get; set;}
-        public string? Instructions {get; set;}
-        public FoodCategory? Category {get; set;}
+        public string? Title { get; set; }
+        public List<string>? Ingredients { get; set; }
+        public string? Instructions { get; set; }
+        public FoodCategory? Category { get; set; }
 
-        public Recipe(string title, List<string> ingredients, string instructions, FoodCategory Category)
+        public Recipe(string title, List<string> ingredients, string instructions, FoodCategory category)
         {
-            this.Title = title;
-            this.Ingredients = ingredients;
-            this.Instructions = instructions;
-            this.Category = Category;
+            Title = title;
+            Ingredients = ingredients;
+            Instructions = instructions;
+            Category = category;
+        }
+
+        public override string ToString()
+        {
+            string s = $"{Title}, {Category}";
+            return s;
         }
 
         public enum FoodCategory
