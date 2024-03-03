@@ -11,7 +11,6 @@ namespace RecipeMS
         {
             recipes = new List<Recipe>();
             recipeStorage = storage;
-            recipes = recipeStorage.Load();
         }
 
         public void AddRecipe(string title, List<string> ingredients, string instructions, Recipe.FoodCategory category)
@@ -23,32 +22,37 @@ namespace RecipeMS
         }
         public void ViewRecipe()
         {
-            recipes = recipeStorage.Load();
 
             if (recipes.Count == 0)
             {
                 Console.WriteLine("No Recipes!");
                 return;
             }
-
-            Console.WriteLine("=============");
-            Console.WriteLine("=  Recipes  =");
-            Console.WriteLine("=============");
-
-            foreach (var r in recipes)
+            else
             {
-                Console.WriteLine("---------------------------");
-                Console.WriteLine($"Title: {r.Title}");
-                Console.WriteLine($"Ingredients:");
-                foreach (var i in r.Ingredients)
-                {
-                    Console.WriteLine($"- {i}");
-                }
-                Console.WriteLine($"Category: {r.Category}");
-                Console.WriteLine($"Instructions: {r.Instructions}");
-                Console.WriteLine("---------------------------");
+                recipes = recipeStorage.Load();
+                Console.WriteLine("=============");
+                Console.WriteLine("=  Recipes  =");
+                Console.WriteLine("=============");
 
+                foreach (var r in recipes)
+                {
+                    Console.WriteLine("---------------------------");
+                    Console.WriteLine($"Title: {r.Title}");
+                    Console.WriteLine($"Ingredients:");
+                    foreach (var i in r.Ingredients)
+                    {
+                        Console.WriteLine($"- {i}");
+                    }
+                    Console.WriteLine($"Category: {r.Category}");
+                    Console.WriteLine($"Instructions: {r.Instructions}");
+                    Console.WriteLine("---------------------------");
+
+                }
             }
+
+
+
 
         }
         public void UpdateRecipe()

@@ -9,8 +9,16 @@ namespace RecipeMS
             try
             {
                 string json = File.ReadAllText(@"recipes.json");
+
+                if (string.IsNullOrWhiteSpace(json))
+                {
+                    Console.WriteLine("Error -> kurets.");
+                    return new List<Recipe>();
+                }
+
                 List<Recipe>? recipes = JsonSerializer.Deserialize<List<Recipe>>(json);
-                return recipes;
+
+                return recipes ?? new List<Recipe>(); // Return an empty list if recipes is null
             }
             catch (Exception ex)
             {
@@ -23,15 +31,17 @@ namespace RecipeMS
         {
             try
             {
-                string serialized = JsonSerializer.Serialize(list, new JsonSerializerOptions {WriteIndented = true});
+                string serialized = JsonSerializer.Serialize(list, new JsonSerializerOptions { WriteIndented = true });
                 File.WriteAllText(@"recipes.json", serialized);
                 Console.WriteLine("Data Saved To Json!");
+
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error -> {ex.Message}");
             }
-            
+
 
         }
     }
