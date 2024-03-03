@@ -1,10 +1,11 @@
+using System.Dynamic;
 using System.Globalization;
 
 namespace RecipeMS
 {
     public class Recipe
     {
-        public Guid RecipeID = Guid.NewGuid();
+        public Guid RecipeID {get; set;}
         public string? Title { get; set; }
         public List<string>? Ingredients { get; set; }
         public string? Instructions { get; set; }
@@ -12,10 +13,16 @@ namespace RecipeMS
 
         public Recipe(string title, List<string> ingredients, string instructions, FoodCategory category)
         {
+            RecipeID = Guid.NewGuid();
             Title = title;
             Ingredients = ingredients;
             Instructions = instructions;
             Category = category;
+        }
+
+        public Recipe()
+        {
+            RecipeID = Guid.NewGuid();
         }
 
         public override string ToString()

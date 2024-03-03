@@ -6,7 +6,14 @@ using static System.Console;
 
 public class RecipeManager : IRecipe
 {
-    List<Recipe> Recipes = new();
+    private readonly IRecipeStorage recipeStorage;
+    private List<Recipe> Recipes;
+
+    public RecipeManager(IRecipeStorage storage)
+    {
+        recipeStorage = storage ?? throw new ArgumentNullException(nameof(storage));
+        Recipes = new List<Recipe>();
+    }
 
     public void AddRecipe()
     {
@@ -158,5 +165,16 @@ public class RecipeManager : IRecipe
         }
 
         return recipesFiltered;
+    }
+    public void Save()
+    {
+        recipeStorage.Save(Recipes);
+        Console.WriteLine("Recipes saved to JSON file.");
+    }
+
+    public void Load()
+    {
+        Recipes = recipeStorage.Load();
+        Console.WriteLine("Recipes loaded from JSON file.");
     }
 }
