@@ -1,6 +1,6 @@
 namespace RecipeMS
 {
-    interface IRecipe
+    public interface IRecipe
     {
         public void AddRecipe();
         public void ViewRecipe();

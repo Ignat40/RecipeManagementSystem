@@ -1,6 +1,6 @@
 namespace RecipeMS
 {
-    interface IRecipeStorage
+    public interface IRecipeStorage
     {
         List<Recipe> Load();
         void Save(List<Recipe> list);
