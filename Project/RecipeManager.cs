@@ -29,12 +29,8 @@ public class RecipeManager : IRecipe
     public void ViewRecipe()
     {
         WriteLine("Which recipee do you want to see? ");
-        int i = 1;
 
-        foreach (var recipe in Recipes)
-        {
-            WriteLine(i + ": " + recipe.Title);
-        }
+        ListRecipes();
 
         bool validInput = false;
 
@@ -57,6 +53,9 @@ public class RecipeManager : IRecipe
 
     public void UpdateRecipe()
     {
+        WriteLine("Which recipee do you want to update?");
+
+        ListRecipes();
 
     }
     public void CategorizeRecipe()
@@ -84,5 +83,16 @@ public class RecipeManager : IRecipe
             }
         }
         return Recipe.FoodCategory.Blank;
+    }
+
+    private void ListRecipes()
+    {
+        int i = 1;
+
+        foreach (var recipe in Recipes)
+        {
+            WriteLine(i + ": " + recipe.Title);
+        }
+
     }
 }
