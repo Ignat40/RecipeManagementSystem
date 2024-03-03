@@ -22,7 +22,7 @@ namespace RecipeMS
         {
             string ingredientsString = string.Join(",", Ingredients);
 
-            string s = $"Titile: {Title}\nIngredients: {ingredientsString}\n Instructions: {Instructions}, {Category.ToString()}";
+            string s = $"Titile: {Title}\nIngredients: {ingredientsString}\nInstructions: {Instructions}\nCategory: {Category.ToString()}";
             return s;
         }
 
