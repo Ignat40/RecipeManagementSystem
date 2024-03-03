@@ -10,6 +10,7 @@ public class RecipeManager : IRecipe
 
     public void AddRecipe()
     {
+        WriteLine();
         WriteLine("Input recipee name: ");
         string? name = ReadLine();
 
@@ -20,6 +21,7 @@ public class RecipeManager : IRecipe
         WriteLine("Input instructions: ");
         string? instructions = ReadLine();
 
+        WriteLine("Pick a category from the following:");
         Recipe.FoodCategory category = GetFoodCategory();
 
         Recipe recipe = new Recipe(name, ingredients, instructions, category);
@@ -30,6 +32,7 @@ public class RecipeManager : IRecipe
 
     public void ViewRecipe()
     {
+        WriteLine();
         WriteLine("Which recipee do you want to see? ");
 
         ListRecipes();
@@ -55,15 +58,23 @@ public class RecipeManager : IRecipe
 
     public void UpdateRecipe()
     {
+        if (Recipes.Count <= 0)
+        {
+            WriteLine("ERROR: no recipes available");
+            return;
+        }
+
+        WriteLine();
         WriteLine("Which recipe do you want to update?");
 
         ListRecipes();
 
         bool validInput = false;
+        int recipeNum;
 
         while (!validInput)
         {
-            validInput = int.TryParse(Console.ReadLine(), out int recipeNum);
+            validInput = int.TryParse(Console.ReadLine(), out recipeNum);
 
             if (validInput == false || recipeNum > Recipes.Count || recipeNum < 0)
             {
@@ -72,18 +83,17 @@ public class RecipeManager : IRecipe
             else
             {
                 recipeNum = recipeNum - 1;
-                Recipes[recipeNum].ToString();
+                WriteLine(Recipes[recipeNum].ToString());
+                AddRecipe();
                 Recipes.RemoveAt(recipeNum);
             }
         }
-
-        AddRecipe();
     }
 
     public void CategorizeRecipe()
     {
+        WriteLine();
         WriteLine("Which Recipes of which category do you want to see?");
-        ShowCategories();
         Recipe.FoodCategory filterCategory = GetFoodCategory();
 
         ListRecipes(GetRecipesByCategory(filterCategory));
@@ -91,7 +101,6 @@ public class RecipeManager : IRecipe
 
     private Recipe.FoodCategory GetFoodCategory()
     {
-
         ShowCategories();
 
         if (int.TryParse(Console.ReadLine(), out int categoryNum))
@@ -129,7 +138,6 @@ public class RecipeManager : IRecipe
     private void ShowCategories()
     {
         int i = 1;
-        WriteLine("Choose a category from the following");
         foreach (string s in Enum.GetNames(typeof(Recipe.FoodCategory)))
         {
             WriteLine("{0}: {1}", i, s);
