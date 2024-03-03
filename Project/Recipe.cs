@@ -20,7 +20,9 @@ namespace RecipeMS
 
         public override string ToString()
         {
-            string s = $"{Title}, {Category}";
+            string ingredientsString = string.Join(",", Ingredients);
+
+            string s = $"Titile: {Title}\nIngredients: {ingredientsString}\n Instructions: {Instructions}, {Category.ToString()}";
             return s;
         }
 
@@ -42,7 +44,8 @@ namespace RecipeMS
             Cake,
             Salad,
             Bread,
-            Dessert
+            Dessert,
+            Blank
         }
     }
 }
